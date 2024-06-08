@@ -1,17 +1,23 @@
-import React from "react";
+import React, {useState} from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/authSlice";
 import authServices from "../../appwriteServices/authService";
 import { useNavigate } from "react-router-dom";
+// import Loading from "../Loading";
 
 function LogoutBtn() {
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
+    // const [loading, setLoading] = useState(false);
+
+
   const handleLogout = () => {
+    // setLoading(true)
     authServices.logout().then(() => {
       dispatch(logout());
       navigate('/login')
+      // setLoading(false)
     });
   };
   return (

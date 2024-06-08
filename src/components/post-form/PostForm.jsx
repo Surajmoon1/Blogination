@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Button, Input, Select, RTE } from "../index";
+import { Button, Input, Select, RTE, Loading } from "../index";
 import appwriteServices from "../../appwriteServices/postsAndFileService";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -18,8 +18,11 @@ function PostForm({ post }) {
 
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.userData);
+  const [loading, setLoading] = useState(false);
+  console.log(userData);
 
   const submit = async (data) => {
+    setLoading(true);
     if (post) {
       const file = data.image[0]
         ? await appwriteServices.uploadFile(data.image[0])
@@ -55,6 +58,7 @@ function PostForm({ post }) {
         }
       }
     }
+    setLoading(false);
   };
 
   const slugTransform = useCallback((value) => {
@@ -78,7 +82,9 @@ function PostForm({ post }) {
     return () => subscription.unsubscribe();
   }, [watch, slugTransform, setValue]);
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
       {/* Left section */}
       <div className="w-2/3 px-2">

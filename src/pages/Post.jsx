@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Container } from "../components";
+import { Button, Container, Loading } from "../components";
 import appwriteService from "../appwriteServices/postsAndFileService";
 import parse from "html-react-parser";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -11,13 +11,17 @@ function Post() {
   const userData = useSelector((state) => state.auth.userData);
   const { slug } = useParams();
 
+  const [loading, setLoading] = useState(false);
+
   const isAuthor = post && userData ? post.userId === userData.$id : false;
 
   useEffect(() => {
+    setLoading(true);
     if (slug) {
       appwriteService.getPost(slug).then((post) => {
         if (post) setPost(post);
         else navigate("/");
+        setLoading(false);
       });
     } else {
       navigate("/");
@@ -25,15 +29,20 @@ function Post() {
   }, [slug, navigate]);
 
   const deletePost = () => {
+    setLoading(true);
     appwriteService.deletePost(post.$id).then((status) => {
       if (status) {
         appwriteService.deleteFile(post.featuredImage);
         navigate("/");
+        setLoading(false);
       }
     });
+    setLoading(false);
   };
 
-  return post ? (
+  return loading ? (
+    <Loading />
+  ) : post ? (
     <div className="py-8">
       <Container>
         <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
