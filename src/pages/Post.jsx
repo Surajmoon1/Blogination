@@ -8,14 +8,14 @@ import { useSelector } from "react-redux";
 function Post() {
   const [post, setPost] = useState(null);
   const navigate = useNavigate();
-  const userData = useSelector(state.auth.userData);
+  const userData = useSelector((state) => state.auth.userData);
   const { slug } = useParams();
 
   const isAuthor = post && userData ? post.userId === userData.$id : false;
 
   useEffect(() => {
     if (slug) {
-      appwriteService.getPost().then((post) => {
+      appwriteService.getPost(slug).then((post) => {
         if (post) setPost(post);
         else navigate("/");
       });

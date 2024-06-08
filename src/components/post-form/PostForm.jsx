@@ -17,7 +17,7 @@ function PostForm({ post }) {
     });
 
   const navigate = useNavigate();
-  const userData = useSelector((state) => state.auth.userdata);
+  const userData = useSelector((state) => state.auth.userData);
 
   const submit = async (data) => {
     if (post) {
@@ -26,13 +26,12 @@ function PostForm({ post }) {
         : null;
 
       if (file) {
-        //FIXME: the featuredImage may be changed to images
         appwriteServices.deleteFile(post.featuredImage);
       }
 
       const dbPost = await appwriteServices.updatePost(post.$id, {
         ...data,
-        featureImg: file ? file.$id : undefined,
+        featuredImage: file ? file.$id : undefined,
       });
 
       if (dbPost) {
@@ -43,10 +42,11 @@ function PostForm({ post }) {
 
       if (file) {
         const fileId = file.$id;
-        data.featureImg = fileId;
+        data.featuredImage = fileId;
 
         const dbPost = await appwriteServices.createPost({
           ...data,
+
           userId: userData.$id,
         });
 
@@ -92,6 +92,7 @@ function PostForm({ post }) {
           label="Slug :"
           placeholder="Slug"
           className="mb-4"
+          readOnly
           {...register("slug", { required: true })}
           onInput={(e) => {
             setValue("slug", slugTransform(e.currentTarget.value), {

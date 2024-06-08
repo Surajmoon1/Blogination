@@ -5,7 +5,7 @@ import AuthLayout from "./AuthLayout";
 import LogoutBtn from "./Header/LogoutBtn";
 import Button from "./Button";
 import PostForm from "./post-form/PostForm";
-import Input from "postcss/lib/input";
+import Input from "./Input";
 import Login from "./Login";
 import Logo from "./Logo";
 import PostCard from "./PostCard";

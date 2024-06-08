@@ -1,7 +1,7 @@
 import config from "../config/config";
 import { Client, ID, Storage, Databases, Query } from "appwrite";
 
-export class Service {
+export class appwriteServices {
   client = new Client();
   databases;
   storage;
@@ -14,7 +14,7 @@ export class Service {
     this.storage = new Storage(this.client);
   }
 
-  async createPost({ title, slug, content, featureImg, userId, status }) {
+  async createPost({ title, slug, content, featuredImage, userId, status }) {
     try {
       return await this.databases.createDocument(
         config.appwriteDatabaseId,
@@ -23,7 +23,7 @@ export class Service {
         {
           title,
           content,
-          featureImg,
+          featuredImage,
           userId,
           status,
         }
@@ -33,7 +33,7 @@ export class Service {
     }
   }
 
-  async updatePost(slug, { title, content, featureImg, status }) {
+  async updatePost(slug, { title, content, featuredImage, status }) {
     try {
       return await this.databases.updateDocument(
         config.appwriteDatabaseId,
@@ -42,7 +42,7 @@ export class Service {
         {
           title,
           content,
-          featureImg,
+          featuredImage,
           status,
         }
       );
@@ -114,11 +114,10 @@ export class Service {
     }
   }
 
-  async getFilePreview(fileId) {
-    return this.storage.getFilePreview(config.appwriteBucketId, fileId);
+   getFilePreview(fileId) {
+    return  this.storage.getFilePreview(config.appwriteBucketId, fileId);
   }
 }
 
-const service = new Service();
-export default service;
-
+const appwriteService = new appwriteServices();
+export default appwriteService;

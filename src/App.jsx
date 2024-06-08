@@ -23,11 +23,15 @@ function App() {
       .finally(() => setLoading(false));
   }, []);
 
-  return loading ? null : (
+  return loading ? (
+    <h2>Loading...</h2>
+  ) : (
     <div className="min-h-screen flex flex-wrap justify-center items-center text-white bg-gray-800">
-      <div className="w-full block text-center">
+      <div className="w-full block">
         <Header />
-        <Outlet />
+        <main>
+          <Outlet />
+        </main>
         <Footer />
       </div>
     </div>

@@ -10,19 +10,22 @@ function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false)
 
   const { register, handleSubmit } = useForm();
 
   const login = async (data) => {
     setError("");
+    setLoading(true)
     try {
       const session = await authService.login(data);
 
       if (session) {
         const userData = await authService.getCurrentUser();
         if (userData) {
-          dispatch(storeLogin(userData));
+          dispatch(storeLogin({ userData: userData }));
           navigate("/");
+          setLoading(false)
         }
       }
     } catch (error) {
@@ -30,10 +33,10 @@ function Login() {
     }
   };
 
-  return (
+  return loading ? <h1>Loading...</h1> : (
     <div className="flex items-center justify-center w-full">
       <div
-        className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl border border-black/10`}
+        className={`mx-auto w-full max-w-lg bg-gray-700 rounded-xl border border-black/10`}
       >
         <div className="mb-2 justify-center flex">
           <span className="inline-block max-w-[100px] w-full">
