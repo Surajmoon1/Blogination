@@ -5,7 +5,7 @@ function Loading({ className = "" }) {
     <div
       aria-label="Loading..."
       role="status"
-      className={`flex items-center space-x-2 justify-center h-screen w-full  ${className} absolute z-20 top-0 bg-gray-800`}
+      className={`flex items-center space-x-2 justify-center fixed z-20 top-0 bottom-0 left-0 right-0 bg-[#14293A] opacity-80 ${className}`}
     >
       <svg
         className="h-20 w-20 animate-spin stroke-white"

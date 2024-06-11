@@ -8,7 +8,7 @@ import PostForm from "./post-form/PostForm";
 import Input from "./Input";
 import Loading from "./Loading";
 import Login from "./Login";
-import Logo from "./Logo";
+import Logo from "./Logo/Logo";
 import PostCard from "./PostCard";
 import RTE from "./RTE";
 import Select from "./Select";
@@ -29,5 +29,5 @@ export {
   AuthLayout,
   RTE,
   PostForm,
-  Loading
+  Loading,
 };

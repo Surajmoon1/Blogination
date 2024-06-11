@@ -3,18 +3,21 @@ import appwriteService from "../appwriteServices/postsAndFileService";
 import { Container, Loading, PostCard } from "../components";
 
 function AllPosts() {
+
   const [loading, setLoading] = useState(false);
 
   const [posts, setPosts] = useState([]);
+
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     appwriteService.getPosts().then((posts) => {
       if (posts) {
         setPosts(posts.documents);
       }
-      setLoading(false)
     });
+    setLoading(false);
   }, []);
+  
   return (
     <div className="w-full py-8">
       <Container>

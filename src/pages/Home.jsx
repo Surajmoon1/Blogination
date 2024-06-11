@@ -28,7 +28,9 @@ function Home() {
   }
 
   if (posts.length === 0 && authStatus) {
-    return (
+    return loading ? (
+      <Loading />
+    ) : (
       <div className="w-full py-8 mt-4 text-center">
         <Container>
           <div className="flex flex-wrap">

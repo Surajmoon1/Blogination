@@ -1,71 +1,49 @@
 import React from "react";
-import { Container, Logo, LogoutBtn } from "../index";
-import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Container, Logo } from "../index";
+import { NavLink  } from "react-router-dom";
+import DesktopNav from "./DesktopNav";
+import Hamburger from "./Hamburger";
 
 
 function Header() {
-  const authStatus = useSelector((state) => state.auth.status);
-
-  const navigate = useNavigate();
-
-  const navItems = [
-    {
-      name: "Home",
-      path: "/",
-      active: true,
-    },
-    {
-      name: "Login",
-      path: "/login",
-      active: !authStatus,
-    },
-    {
-      name: "Signup",
-      path: "/signup",
-      active: !authStatus,
-    },
-    {
-      name: "All Posts",
-      path: "/all-posts",
-      active: authStatus,
-    },
-    {
-      name: "Add Post",
-      path: "/add-post",
-      active: authStatus,
-    },
-  ];
+  
 
   return (
-    <header>
+    <header className="sticky top-0 z-50 shadow-2xl bg-slate-800">
       <Container>
-        <nav>
+        <nav className="flex items-center justify-between">
           <div className="mr-4">
-            <Link to="/">
+            <NavLink to="/">
               <Logo width="100px" />
-            </Link>
+            </NavLink>
           </div>
-        </nav>
-        <ul className="flex ml-auto">
-          {navItems.map((item) =>
-            item.active ? (
-              <li key={item.name}>
-                <button
-                  onClick={() => navigate(item.path)}
-                  className="inline-block py-2 px-6 duration-200 rounded-full hover:bg-blue-700"
-                >
-                  {item.name}
-                </button>
+          {/* <ul className="flex ml-auto gap-1">
+            {navItems.map((item) =>
+              item.active ? (
+                <li key={item.name} className="text-white">
+                  <NavLink
+                    to={item.path}
+                    className={({ isActive }) =>
+                      `inline-block py-2 px-6 duration-500 rounded-full hover:bg-[#52c7d9] hover:text-black ${
+                        isActive ? "text-[#eaa79c] " : "white"
+                      }`
+                    }
+                  >
+                    {item.name}
+                  </NavLink>
+                </li>
+              ) : null
+            )}
+            {authStatus && (
+              <li>
+                <LogoutBtn />
               </li>
-            ) : null
-          )}
-          {authStatus && (
-            <li>
-              <LogoutBtn />
-            </li>
-          )}
-        </ul>
+            )}
+          </ul> */}
+
+          <DesktopNav />
+          <Hamburger />
+        </nav>
       </Container>
     </header>
   );

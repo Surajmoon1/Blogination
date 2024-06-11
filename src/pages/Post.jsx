@@ -45,27 +45,35 @@ function Post() {
   ) : post ? (
     <div className="py-8">
       <Container>
-        <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
+        <div className=" w-full h-[35rem] relative  justify-center mb-4 rounded-xl p-2">
           <img
             src={appwriteService.getFilePreview(post.featuredImage)}
             alt={post.title}
-            className="rounded-xl"
+            className="rounded-xl object-fill
+             h-full w-full"
           />
           {isAuthor && (
-            <div className="absolute top-6 right-6">
+            <div className="absolute  top-[-40px] right-2 z-0">
               <Link to={`/edit-post/${post.$id}`}>
-                <Button className="mr-3 bg-green-500">Edit</Button>
+                <Button class="mr-3 bg-green-500 px-7 py-1 rounded-xl font-bold hover:text-white hover:bg-green-800 ease-in duration-300">
+                  Edit
+                </Button>
               </Link>
-              <Button className="bg-red-500" onClick={deletePost}>
+              <button
+                class="rounded-xl px-5 py-1 font-bold duration-300 ease-in  bg-red-500 hover:bg-red-800 hover:text-white"
+                onClick={deletePost}
+              >
                 Delete
-              </Button>
+              </button>
             </div>
           )}
         </div>
         <div className="w-full mb-6 ">
-          <h1 className="text-2xl font-bold">{post.title}</h1>
+          <h1 className="text-4xl text-[#eaa79c] font-bold text-center">
+            {post.title}
+          </h1>
         </div>
-        <div className="browser-css">{parse(post.content)}</div>
+        <div className="text-justify text-white">{parse(post.content)}</div>
       </Container>
     </div>
   ) : null;

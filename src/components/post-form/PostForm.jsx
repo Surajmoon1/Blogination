@@ -19,7 +19,6 @@ function PostForm({ post }) {
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.userData);
   const [loading, setLoading] = useState(false);
-  console.log(userData);
 
   const submit = async (data) => {
     setLoading(true);
