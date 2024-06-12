@@ -20,7 +20,7 @@ function PostForm({ post }) {
       slug: post?.slug || "",
       content: post?.content || "",
       status: post?.status || "active",
-      featuredImage: post?.featuredImage || null
+      featuredImage: post?.featuredImage || null,
     },
   });
 
@@ -108,8 +108,8 @@ function PostForm({ post }) {
         <Input
           label="Post ID "
           placeholder="Post ID"
-            required={true}
-            errors={errors.slug}
+          required={true}
+          errors={errors.slug}
           className=" placeholder:text-gray-700 indent-2 outline-none bg-gray-400 text-black text-lg font-medium cursor-not-allowed"
           readOnly
           {...register("slug", { required: true })}

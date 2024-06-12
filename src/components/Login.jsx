@@ -12,7 +12,11 @@ function Login() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const login = async (data) => {
     setError("");
@@ -27,39 +31,39 @@ function Login() {
           navigate("/");
           setLoading(false);
         }
+      } else {
+        setError("Invalid credentials. Please check the email and password.");
       }
     } catch (error) {
       setError(error.message);
     }
-    setLoading(false)
+    setLoading(false);
   };
 
   return loading ? (
     <Loading />
   ) : (
     <div className="flex items-center justify-center w-full">
-      <div
-        className={`mx-auto w-full max-w-lg bg-gray-700 rounded-xl border border-black/10`}
-      >
+      <div className="p-6 mx-auto w-full max-w-xl bg-gray-700 rounded-xl">
         <div className="mb-2 justify-center flex">
-          <span className="inline-block max-w-[100px] w-full">
-            <Logo width="100%" />
+          <span className="flex justify-center w-full">
+            <Logo />
           </span>
         </div>
-        <h2 className="text-center text-2xl font-bold leading-tight">
+        <h2 className="text-center text-white text-2xl font-bold leading-tight">
           Log in to your account
         </h2>
 
-        <p className="mt-2 text-center text-base text-black/60">
+        <p className="mt-2 text-center text-white text-black/60">
           Don&apos;t have any account?&nbsp;
           <Link
             to="/signup"
-            className="font-medium text-primary transition-all duration-200 hover:underline"
+            className="font-medium text-blue-600 transition-all duration-200 hover:underline"
           >
             Sign Up
           </Link>
         </p>
-        {error && <p className="mt-8 text-red-600 text-center"></p>}
+        {error && <p className="mt-4 text-red-600 text-center">{error}</p>}
 
         <form onSubmit={handleSubmit(login)} className="mt-8">
           <div className="space-y-5">
@@ -67,6 +71,9 @@ function Login() {
               type="email"
               placeholder="Enter Your Email"
               label="Email: "
+              required={true}
+              errors={errors.email}
+              className="bg-gray-400 focus:outline-1 focus:outline-[#eaa79c] placeholder:text-gray-700 indent-2 text-black text-lg font-medium focus:bg-gray-100"
               {...register("email", {
                 required: true,
                 validate: {
@@ -81,11 +88,18 @@ function Login() {
               label="Password"
               placeholder="Enter Your Password"
               type="password"
+              required={true}
+              errors={errors.password}
+              className="bg-gray-400 focus:outline-1 focus:outline-[#eaa79c] placeholder:text-gray-700 indent-2 text-black text-lg font-medium focus:bg-gray-100"
               {...register("password", {
                 required: true,
               })}
             />
-            <Button type="submit" className="w-full">
+            <span className="text-gray-400 ml-2 text-xs"> Password must be between 8 and 256 characters long</span>
+            <Button
+              type="submit"
+              className="w-full rounded-xl py-2 font-bold duration-300 ease-in text-xl text-black hover:bg-blue-800 hover:text-white"
+            >
               Sign in
             </Button>
           </div>

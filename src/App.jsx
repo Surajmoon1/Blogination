@@ -31,7 +31,7 @@ function App() {
     <div className="min-h-screen flex flex-wrap justify-center items-center bg-[#14293A] ">
       <div className="w-full block">
         <Header />
-        <main className="py-1">
+        <main className="py-8">
           <Outlet />
         </main>
 
