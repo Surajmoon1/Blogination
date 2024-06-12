@@ -27,7 +27,7 @@ function Home() {
     );
   }
 
-  if (posts.length === 0 && authStatus) {
+  if (posts.length === 0 && authStatus === true) {
     return loading ? (
       <Loading />
     ) : (
@@ -35,7 +35,7 @@ function Home() {
         <Container>
           <div className="flex flex-wrap">
             <div className="p-2 w-full">
-              <h1 className="text-2xl font-bold text-white hover:text-gray-500">
+              <h1 className="text-2xl font-bold py-10 text-center text-white hover:text-gray-500">
                 No Posts yet
               </h1>
             </div>

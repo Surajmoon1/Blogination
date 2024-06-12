@@ -9,7 +9,7 @@ function Header() {
   
 
   return (
-    <header className="sticky top-0 z-50 shadow-2xl bg-slate-800">
+    <header className="sticky top-0 z-50 shadow-2xl bg-gray-900">
       <Container>
         <nav className="flex items-center justify-between">
           <div className="mr-4">

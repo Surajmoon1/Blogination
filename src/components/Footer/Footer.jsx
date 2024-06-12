@@ -131,15 +131,6 @@ function Footer() {
               <li>
                 <Link
                   to="/"
-                  className="text-gray-700 transition hover:text-[#eaa79c] dark:text-gray-200"
-                >
-                  1on1 Coaching
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  to="/"
                   className="text-gray-700 transition hover:text-[#eaa79c]  dark:text-gray-200"
                 >
                   Company Review

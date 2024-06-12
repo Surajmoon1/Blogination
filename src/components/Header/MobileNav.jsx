@@ -42,7 +42,7 @@ function MobileNav() {
               to={item.path}
               className={({ isActive }) =>
                 `inline-block py-2 px-6 duration-500 rounded-full hover:bg-[#52c7d9] hover:text-black ${
-                  isActive ? "text-[#eaa79c] " : "white"
+                  isActive ? "text-[#eaa79c] border-b-2" : "white"
                 }`
               }
             >
