@@ -5,14 +5,15 @@ import appwriteService from "../appwriteServices/postsAndFileService";
 function PostCard({ $id, title, featuredImage }) {
   return (
     <Link to={`/post/${$id}`}>
-      <div className="w-full bg-gray-900 rounded-xl p-4">
-        <div className="w-full justify-center mb-4">
+      <div className="w-full rounded-xl hover:bg-gray-900 p-3">
+        <div className="w-full mb-3 flex justify-center">
           <img
             src={appwriteService.getFilePreview(featuredImage)}
             alt={title}
+            className="object-contain rounded-xl"
           />
         </div>
-        <h2 className="text-xl font-bold">{title}</h2>
+        <h2 className=" text-xl text-center font-bold text-white">{title}</h2>
       </div>
     </Link>
   );

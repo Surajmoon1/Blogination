@@ -3,7 +3,6 @@ import appwriteService from "../appwriteServices/postsAndFileService";
 import { Container, Loading, PostCard } from "../components";
 
 function AllPosts() {
-
   const [loading, setLoading] = useState(false);
 
   const [posts, setPosts] = useState([]);
@@ -13,21 +12,20 @@ function AllPosts() {
     appwriteService.getPosts().then((posts) => {
       if (posts) {
         setPosts(posts.documents);
-      }
+      } 
     });
     setLoading(false);
   }, []);
-  
+
   return (
     <div className="w-full py-8">
       <Container>
         {loading ? (
           <Loading />
         ) : (
-          <div className="flex flex-wrap">
+          <div className="flex flex-col md:flex-row flex-wrap justify-center items-center">
             {posts.map((post) => (
-              <div key={post.$id} className="p-2 w-1/4">
-                {/* {post} */}
+              <div key={post.$id} className="p-2 w-80">
                 <PostCard {...post} />
               </div>
             ))}

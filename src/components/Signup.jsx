@@ -30,12 +30,15 @@ function Signup() {
           navigate("/");
           setLoading(false);
         }
-        if (userData.email === createUser.email) {
-          setError("User already exist");
-        }
       }
     } catch (error) {
-      setError(error.message);
+      // if (error.message.includes("user already exists")) {
+      //   setError("A user with this email already exists.");
+      // } else {
+      //   setError("An error occurred during signup.");
+      // }
+
+      setError(error.message)
     }
     setLoading(false);
   };
@@ -102,6 +105,7 @@ function Signup() {
               className="bg-gray-400 focus:outline-1 focus:outline-[#eaa79c] placeholder:text-gray-700 indent-2 text-black text-lg font-medium focus:bg-gray-100"
               {...register("password", {
                 required: true,
+                minLength: 8,
               })}
             />
             <span className="text-gray-400 ml-2 text-xs">
