@@ -45,18 +45,20 @@ function Home() {
     );
   }
 
-  return loading ? (
-    <Loading />
-  ) : (
+  return (
     <div className="w-full py-8">
       <Container>
-        <div className="flex flex-wrap">
-          {posts.map((post) => (
-            <div key={post.$id} className="p-2 w-1/4">
-              <PostCard {...post} />
-            </div>
-          ))}
-        </div>
+        {loading ? (
+          <Loading />
+        ) : (
+          <div className="flex flex-col md:flex-row flex-wrap w-full justify-center items-center ">
+            {posts.map((post) => (
+              <div key={post.$id} className="p-2 w-80">
+                <PostCard {...post} />
+              </div>
+            ))}
+          </div>
+        )}
       </Container>
     </div>
   );

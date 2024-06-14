@@ -32,13 +32,7 @@ function Signup() {
         }
       }
     } catch (error) {
-      // if (error.message.includes("user already exists")) {
-      //   setError("A user with this email already exists.");
-      // } else {
-      //   setError("An error occurred during signup.");
-      // }
-
-      setError(error.message)
+      setError(error.message);
     }
     setLoading(false);
   };
@@ -46,7 +40,7 @@ function Signup() {
   return loading ? (
     <Loading />
   ) : (
-    <div className="flex items-center justify-center w-full">
+    <div className="flex items-center justify-center w-full px-2">
       <div className="p-6 mx-auto w-full max-w-xl bg-gray-700 rounded-xl">
         <div className="mb-2 justify-center flex">
           <span className="flex justify-center w-full">

@@ -4,6 +4,7 @@ import { Button, Input, Select, RTE, Loading } from "../index";
 import appwriteServices from "../../appwriteServices/postsAndFileService";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { ID } from "appwrite";
 
 function PostForm({ post }) {
   const {
@@ -69,21 +70,35 @@ function PostForm({ post }) {
     setLoading(false);
   };
 
-  const slugTransform = useCallback((value) => {
-    if (value && typeof value === "string") {
-      return value
-        .trim()
-        .toLowerCase()
-        .replace(/[^a-zA-Z\d\s]+/g, "-")
-        .replace(/\s/g, "-");
-    }
-    return "";
+  // const slugTransform = useCallback((value) => {
+  //   if (value && typeof value === "string") {
+  //     return value
+  //       .trim()
+  //       .toLowerCase()
+  //       .replace(/[^a-zA-Z\d\s]+/g, "-")
+  //       .replace(/\s/g, "-");
+  //   }
+  //   return '';
+  // }, []);
+
+  // useEffect(() => {
+  //   const subscription = watch((value, { name }) => {
+  //     if (name === "title") {
+  //       setValue("slug", slugTransform(value.title), { shouldValidate: true });
+  //     }
+  //   });
+
+  //   return () => subscription.unsubscribe();
+  // }, [watch, slugTransform, setValue]);
+
+  const slugTransform = useCallback(() => {
+    return ID.unique();
   }, []);
 
   useEffect(() => {
     const subscription = watch((value, { name }) => {
       if (name === "title") {
-        setValue("slug", slugTransform(value.title), { shouldValidate: true });
+        setValue("slug", slugTransform(value.slug), { shouldValidate: true });
       }
     });
 

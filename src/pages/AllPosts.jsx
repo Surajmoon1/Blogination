@@ -12,9 +12,9 @@ function AllPosts() {
     appwriteService.getPosts().then((posts) => {
       if (posts) {
         setPosts(posts.documents);
-      } 
+        setLoading(false);
+      }
     });
-    setLoading(false);
   }, []);
 
   return (
@@ -23,7 +23,7 @@ function AllPosts() {
         {loading ? (
           <Loading />
         ) : (
-          <div className="flex flex-col md:flex-row flex-wrap justify-center items-center">
+          <div className="flex flex-col md:flex-row flex-wrap w-full justify-center items-center">
             {posts.map((post) => (
               <div key={post.$id} className="p-2 w-80">
                 <PostCard {...post} />

@@ -21,7 +21,7 @@ export class appwriteServices {
         config.appwriteCollectionId,
         slug,
         {
-          title,
+          title, 
           content,
           featuredImage,
           userId,
