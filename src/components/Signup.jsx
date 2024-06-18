@@ -20,14 +20,18 @@ function Signup() {
   const signup = async (data) => {
     setError("");
     setLoading(true);
+
     try {
       const createUser = await authService.createAccount(data);
+      await authService.createVerification();
 
       if (createUser) {
         const userData = await authService.getCurrentUser();
         if (userData) {
           dispatch(login(userData));
-          navigate("/");
+          // navigate("/");
+          navigate("/verify");
+
           setLoading(false);
         }
       }
