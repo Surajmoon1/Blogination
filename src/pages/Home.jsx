@@ -12,9 +12,9 @@ function Home() {
   const authStatus = useSelector((state) => state.auth.status);
 
   useEffect(() => {
-    setLoading(true);
     (async () => {
-      appwriteService.getPosts().then((posts) => {
+      setLoading(true);
+      await appwriteService.getPosts().then((posts) => {
         if (posts) {
           setPosts(posts.documents);
         }
