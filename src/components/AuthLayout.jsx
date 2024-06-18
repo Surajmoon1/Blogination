@@ -4,24 +4,24 @@ import { useSelector } from "react-redux";
 import Loading from "./Loading";
 
 function Protected({ children, authentication = true }) {
-    const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   const authStatus = useSelector((state) => state.auth.status);
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     if (authentication && authStatus !== authentication) {
       navigate("/login");
-      setLoading(false)
+      setLoading(false);
     } else if (!authentication && authStatus !== authentication) {
-      navigate("./");
-      setLoading(false)
+      navigate("/");
+      setLoading(false);
     }
     setLoading(false);
   }, [authStatus, authentication, loading]);
 
-  return loading ? <Loading/> : <>{children}</>;
+  return loading ? <Loading /> : <>{children}</>;
 }
 
 export default Protected;

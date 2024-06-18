@@ -7,7 +7,7 @@ export class AuthServices {
 
   constructor() {
     this.client
-      .setEndpoint(config.appwriteUrl) // Your API Endpoint
+      .setEndpoint(config.appwriteUrl) // API Endpoint
       .setProject(config.appwriteProjectId);
 
     this.account = new Account(this.client);
@@ -21,18 +21,37 @@ export class AuthServices {
         password,
         name
       );
+
       if (userAccount) {
         //calling login function when account created
         return this.login({ email, password });
       } else {
         return userAccount;
       }
+      // return userAccount;
     } catch (error) {
       console.log("Apprite service :: createAccount :: error :- ", error);
       throw error;
     }
   }
 
+  async createVerification() {
+    try {
+      return await this.account.createVerification("http://localhost:5173");
+    } catch (error) {
+      console.log("Apprite service :: verification :: error :- ", error);
+      throw error;
+    }
+  }
+
+  async updateVerification(userId, secret) {
+    try {
+      return await this.account.updateVerification(userId, secret);
+    } catch (error) {
+      console.log("Apprite service :: updateVerification :: error :- ", error);
+      throw error;
+    }
+  }
   async login({ email, password }) {
     try {
       return await this.account.createEmailPasswordSession(email, password);
@@ -48,7 +67,6 @@ export class AuthServices {
     } catch (error) {
       console.log("Appwrite services :: getCurrenUser :: error :- ", error);
     }
-    // return;
   }
 
   async logout() {
