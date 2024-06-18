@@ -37,7 +37,7 @@ export class AuthServices {
 
   async createVerification() {
     try {
-      return await this.account.createVerification("http://localhost:5173");
+      await this.account.createVerification("http://localhost:5173/verify");
     } catch (error) {
       console.log("Apprite service :: verification :: error :- ", error);
       throw error;
@@ -46,12 +46,13 @@ export class AuthServices {
 
   async updateVerification(userId, secret) {
     try {
-      return await this.account.updateVerification(userId, secret);
+      await this.account.updateVerification(userId, secret);
     } catch (error) {
       console.log("Apprite service :: updateVerification :: error :- ", error);
       throw error;
     }
   }
+
   async login({ email, password }) {
     try {
       return await this.account.createEmailPasswordSession(email, password);

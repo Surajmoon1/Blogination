@@ -13,12 +13,14 @@ function Home() {
 
   useEffect(() => {
     setLoading(true);
-    appwriteService.getPosts().then((posts) => {
-      if (posts) {
-        setPosts(posts.documents);
-      }
-      setLoading(false);
-    });
+    (async () => {
+      appwriteService.getPosts().then((posts) => {
+        if (posts) {
+          setPosts(posts.documents);
+        }
+        setLoading(false);
+      });
+    })();
   }, []);
 
   if (authStatus === false) {

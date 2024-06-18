@@ -26,15 +26,16 @@ function Login() {
 
       if (session) {
         const userData = await authService.getCurrentUser();
+        console.log(userData);
         if (userData) {
           dispatch(storeLogin({ userData: userData }));
           navigate("/");
           setLoading(false);
+        } else {
+          navigate("/login");
         }
       }
-     
     } catch (error) {
-      
       setError(error.message);
     }
     setLoading(false);
@@ -96,7 +97,9 @@ function Login() {
                 minLength: 8,
               })}
             />
-            <span className="text-gray-400 ml-2 text-xs"> Password must be between 8 and 256 characters long</span>
+            <span className="text-gray-400 ml-2 text-xs">
+              Password must be between 8 and 256 characters long
+            </span>
             <Button
               type="submit"
               className="w-full rounded-xl py-2 font-bold duration-300 ease-in text-xl text-black hover:bg-blue-800 hover:text-white"
