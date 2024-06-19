@@ -42,7 +42,7 @@ function DesktopNav() {
               to={item.path}
               className={({ isActive }) =>
                 `inline-block py-2 px-6 duration-500 rounded-full hover:bg-[#6ee2f5] hover:text-black ${
-                  isActive ? "text-[#eaa79c]  border-b-2" : "white"
+                  isActive ? "text-[#eaa79c]  border-y-2" : "white"
                 }`
               }
             >

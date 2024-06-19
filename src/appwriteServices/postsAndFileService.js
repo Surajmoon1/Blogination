@@ -14,18 +14,29 @@ export class appwriteServices {
     this.storage = new Storage(this.client);
   }
 
-  async createPost({ title, slug, content, featuredImage, userId, status }) {
+  async createPost({
+    title,
+    slug,
+    content,
+    featuredImage,
+    userId,
+    status,
+    author,
+    updatedAt
+  }) {
     try {
       return await this.databases.createDocument(
         config.appwriteDatabaseId,
         config.appwriteCollectionId,
         slug,
         {
-          title, 
+          title,
           content,
           featuredImage,
           userId,
           status,
+          author,
+          updatedAt,
         }
       );
     } catch (error) {

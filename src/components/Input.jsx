@@ -1,7 +1,7 @@
 import React, { forwardRef, useId } from "react";
 
 const Input = forwardRef(function Input(
-  { type = "text", label, className = "", required, errors, ...props },
+  { type = "text", label, className = "", required, errors, value, ...props },
   ref
 ) {
   const id = useId();
@@ -30,6 +30,7 @@ const Input = forwardRef(function Input(
           type={type}
           className={`px-3 py-2 rounded-lg  text-black  duration-200  w-full ${className}`}
           id={id}
+          value={value}
           {...props}
           ref={ref}
         />

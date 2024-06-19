@@ -18,9 +18,9 @@ function PostForm({ post }) {
   } = useForm({
     defaultValues: {
       title: post?.title || "",
-      slug: post?.slug || "",
+      slug: post?.slug || ID.unique(),
       content: post?.content || "",
-      status: post?.status || "active",
+      status: post?.status || "Active",
       featuredImage: post?.featuredImage || null,
     },
   });
@@ -58,8 +58,9 @@ function PostForm({ post }) {
 
         const dbPost = await appwriteServices.createPost({
           ...data,
-
+          author: userData.name,
           userId: userData.$id,
+          updatedAt: userData.$updatedAt.split("T")[0],
         });
 
         if (dbPost) {
@@ -67,43 +68,9 @@ function PostForm({ post }) {
         }
       }
     }
+
     setLoading(false);
   };
-
-  // const slugTransform = useCallback((value) => {
-  //   if (value && typeof value === "string") {
-  //     return value
-  //       .trim()
-  //       .toLowerCase()
-  //       .replace(/[^a-zA-Z\d\s]+/g, "-")
-  //       .replace(/\s/g, "-");
-  //   }
-  //   return '';
-  // }, []);
-
-  // useEffect(() => {
-  //   const subscription = watch((value, { name }) => {
-  //     if (name === "title") {
-  //       setValue("slug", slugTransform(value.title), { shouldValidate: true });
-  //     }
-  //   });
-
-  //   return () => subscription.unsubscribe();
-  // }, [watch, slugTransform, setValue]);
-
-  const slugTransform = useCallback(() => {
-    return ID.unique();
-  }, []);
-
-  useEffect(() => {
-    const subscription = watch((value, { name }) => {
-      if (name === "title") {
-        setValue("slug", slugTransform(value.slug), { shouldValidate: true });
-      }
-    });
-
-    return () => subscription.unsubscribe();
-  }, [watch, slugTransform, setValue]);
 
   return loading ? (
     <Loading />
@@ -123,17 +90,13 @@ function PostForm({ post }) {
         <Input
           label="Post ID "
           placeholder="Post ID"
+          readOnly
           required={true}
           errors={errors.slug}
           className=" placeholder:text-gray-700 indent-2 outline-none bg-gray-400 text-black text-lg font-medium cursor-not-allowed"
-          readOnly
           {...register("slug", { required: true })}
-          onInput={(e) => {
-            setValue("slug", slugTransform(e.currentTarget.value), {
-              shouldValidate: true,
-            });
-          }}
         />
+
         <RTE
           label="Content "
           name="content"

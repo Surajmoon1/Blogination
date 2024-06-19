@@ -49,7 +49,6 @@ function RTE({ name, control, label, required, errors, defaultValue = "" }) {
                 "code",
                 "help",
                 "wordcount",
-                "tinymcespellchecker",
                 "anchor",
               ],
               toolbar:

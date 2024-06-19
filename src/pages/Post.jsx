@@ -43,9 +43,9 @@ function Post() {
   return loading ? (
     <Loading />
   ) : post ? (
-    <div className="py-8">
+    <div className="py-8 mx-2 border">
       <Container>
-        <div className=" w-full h-80 md:h-[35rem] relative  justify-center mb-4 rounded-xl p-2">
+        <div className=" w-full h-80 md:h-[35rem] relative justify-center mb-4 rounded-xl p-2">
           <img
             src={appwriteService.getFilePreview(post.featuredImage)}
             alt={post.title}
@@ -69,11 +69,19 @@ function Post() {
           )}
         </div>
         <div className="w-full mb-6 ">
-          <h1 className="text-4xl text-[#eaa79c] font-bold text-center">
+          <h1 className="text-4xl text-white font-bold text-center">
             {post.title}
           </h1>
         </div>
-        <div className="text-justify text-white">{parse(post.content)}</div>
+        <div className="text-justify text-white px-4 py-10 border-y mb-4">
+          {parse(post.content)}
+        </div>
+        <div className="text-end ">
+          <p className="text-gray-300 font-bold pt-1">
+            Author : &nbsp; {post.author}
+          </p>
+          <p className="text-gray-300 pt-1">Updated At - {post.updatedAt}</p>
+        </div>
       </Container>
     </div>
   ) : null;
