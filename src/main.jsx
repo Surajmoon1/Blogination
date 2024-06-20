@@ -15,8 +15,10 @@ import {
   EditPost,
   Verified,
   Verification,
+  ResetPassword,
 } from "./pages/pages.js";
 import { AuthLayout } from "./components";
+import CreatePassRecovery from "./pages/CreatePassRecovery.jsx";
 
 const router = createBrowserRouter([
   {
@@ -61,19 +63,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/verify",
-        element: (
-          // <AuthLayout authentication>
-          <Verified />
-          //  </AuthLayout>
-        ),
+        element: <Verified />,
       },
       {
         path: "/verification",
-        element: (
-          // <AuthLayout authentication>
-          <Verification />
-          //  </AuthLayout>
-        ),
+        element: <Verification />,
+      },
+      {
+        path: "/reset-password",
+        element: <ResetPassword />,
+      },
+      {
+        path: "/password-recovery",
+        element: <CreatePassRecovery />,
       },
       {
         path: "/edit-post/:slug",

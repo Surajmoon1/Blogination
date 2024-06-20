@@ -19,6 +19,7 @@ function Login() {
   } = useForm();
 
   const login = async (data) => {
+    console.log(data);
     setError("");
     setLoading(true);
     try {
@@ -108,6 +109,20 @@ function Login() {
             </Button>
           </div>
         </form>
+        {/* <Link
+          to="/password-recovery"
+          className="w-full rounded-xl py-2 font-bold duration-300 ease-in text-xl text-black hover:bg-blue-800 hover:text-white bg-blue-600 mt-5 text-center"
+        >
+          Forget Password
+        </Link> */}
+
+        <button
+          type="button"
+          className="w-full rounded-xl py-2 font-bold duration-300 ease-in text-xl text-black hover:bg-blue-800 hover:text-white bg-blue-600 mt-4"
+          onClick={() => navigate("/password-recovery")}
+        >
+          Forget Password
+        </button>
       </div>
     </div>
   );

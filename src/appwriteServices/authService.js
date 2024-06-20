@@ -68,13 +68,43 @@ export class AuthServices {
     } catch (error) {
       console.log("Appwrite services :: getCurrenUser :: error :- ", error);
     }
+    return null;
   }
 
   async logout() {
     try {
-      return await this.account.deleteSessions();
+      await this.account.deleteSessions();
     } catch (error) {
       console.log("Appwrite Services :: logout :: error :- ", error);
+    }
+  }
+
+  async createPasswordRecovery({ email }) {
+    try {
+      await this.account.createRecovery(
+        email,
+        "http://localhost:5173/reset-password"
+      );
+    } catch (error) {
+      console.log(
+        "Appwrite Services :: createPasswordRecovery :: error :- ",
+        error
+      );
+      throw error;
+    }
+  }
+
+  async resetPassword(userId, secret, password, confirmPassword) {
+    try {
+      await this.account.updateRecovery(
+        userId,
+        secret,
+        password,
+        confirmPassword
+      );
+    } catch (error) {
+      console.log("Appwrite Services :: resetPassword :: error :- ", error);
+      throw error;
     }
   }
 }

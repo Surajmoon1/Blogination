@@ -7,6 +7,7 @@ import Post from "./Post";
 import Signup from "./Signup";
 import Verified from "./Verified";
 import Verification from "./Verification";
+import ResetPassword from "./ResetPassword";
 
 export {
   AllPosts,
@@ -18,4 +19,5 @@ export {
   Signup,
   Verified,
   Verification,
+  ResetPassword,
 };
