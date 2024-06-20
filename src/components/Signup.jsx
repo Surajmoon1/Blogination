@@ -38,7 +38,7 @@ function Signup() {
         if (userData) {
           // dispatch(login(userData));
           // navigate("/");
-          navigate("/verify");
+          navigate("/verification");
 
           setLoading(false);
         }

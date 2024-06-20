@@ -5,6 +5,17 @@ import Home from "./Home";
 import Login from "./Login";
 import Post from "./Post";
 import Signup from "./Signup";
+import Verified from "./Verified";
 import Verification from "./Verification";
 
-export { AllPosts, AddPost, EditPost, Home, Login, Post, Signup, Verification };
+export {
+  AllPosts,
+  AddPost,
+  EditPost,
+  Home,
+  Login,
+  Post,
+  Signup,
+  Verified,
+  Verification,
+};

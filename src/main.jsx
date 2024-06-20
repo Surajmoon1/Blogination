@@ -13,6 +13,7 @@ import {
   AllPosts,
   AddPost,
   EditPost,
+  Verified,
   Verification,
 } from "./pages/pages.js";
 import { AuthLayout } from "./components";
@@ -60,6 +61,14 @@ const router = createBrowserRouter([
       },
       {
         path: "/verify",
+        element: (
+          // <AuthLayout authentication>
+          <Verified />
+          //  </AuthLayout>
+        ),
+      },
+      {
+        path: "/verification",
         element: (
           // <AuthLayout authentication>
           <Verification />

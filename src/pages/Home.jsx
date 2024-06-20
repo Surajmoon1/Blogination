@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { PostCard, Container, Login, Loading } from "../components";
 import appwriteService from "../appwriteServices/postsAndFileService";
-import authService from "../appwriteServices/authService";
 import { useSelector } from "react-redux";
-import { useSearchParams, Navigate } from "react-router-dom";
 
 function Home() {
   const [posts, setPosts] = useState([]);

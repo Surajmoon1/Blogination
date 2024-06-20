@@ -14,7 +14,7 @@ function PostCard({ $id, title, featuredImage, author, updatedAt }) {
           />
         </div>
         <h2 className=" text-xl text-center font-bold text-white">{title}</h2>
-        <div className="flex justify-between items-center border-t-[1px] border-gray-400 w-full">
+        <div className="flex justify-between items-center border-t border-gray-400 w-full">
           <p className="text-xs text-gray-400">
             Author: <span className="text-gray-300 text-base">{author}</span>
           </p>
