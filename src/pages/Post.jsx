@@ -72,7 +72,7 @@ function Post() {
             {post.title}
           </h1>
         </div>
-        <div className="text-justify text-white px-4 py-10 border-y mb-4">
+        <div className=" text-white px-4 py-10 border-y mb-4">
           {parse(post.content)}
         </div>
         <div className="text-end ">

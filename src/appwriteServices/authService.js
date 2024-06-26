@@ -37,7 +37,9 @@ export class AuthServices {
 
   async createVerification() {
     try {
-      await this.account.createVerification("http://localhost:5173/verify");
+      await this.account.createVerification(
+        "https://blogination.netlify.app/verify"
+      );
     } catch (error) {
       console.log("Apprite service :: verification :: error :- ", error);
       throw error;
@@ -83,7 +85,7 @@ export class AuthServices {
     try {
       await this.account.createRecovery(
         email,
-        "http://localhost:5173/reset-password"
+        "https://blogination.netlify.app/reset-password"
       );
     } catch (error) {
       console.log(
