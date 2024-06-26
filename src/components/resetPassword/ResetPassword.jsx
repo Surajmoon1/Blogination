@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import authService from "../../appwriteServices/authService";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { Button, Input } from "../index";
+import { Button, Input, Loading } from "../index";
 
 function ResetPassword() {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm();
 
   const [error, setError] = useState();
+  const [loading, setLoading] = useState(false);
 
   const [params] = useSearchParams();
   const id = params.get("userId");
@@ -19,22 +21,31 @@ function ResetPassword() {
   const navigate = useNavigate();
 
   const resetPass = async (data) => {
-    console.log(data);
-    try {
-      await authService.resetPassword(
-        id,
-        secret,
-        data.password,
-        data.confirmPassword
-      );
-      navigate("/login");
-    } catch (error) {
-      console.log(error);
-      setError(error.message);
+    if (data.password === data.confirmPassword) {
+      setLoading(true);
+      try {
+        await authService.resetPassword(
+          id,
+          secret,
+          data.password,
+          data.confirmPassword
+        );
+        navigate("/login");
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+        setError(error.message);
+        setLoading(false);
+      }
+    } else {
+      setError("Password does not match");
     }
+    // console.log(data);
   };
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <div className="flex items-center justify-center w-full px-2">
       <div className="p-6 mx-auto w-full max-w-xl bg-gray-700 rounded-xl">
         {error && <p className="mt-4 text-red-600 text-center">{error}</p>}

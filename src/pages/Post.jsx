@@ -45,15 +45,14 @@ function Post() {
   ) : post ? (
     <div className="py-8 mx-2 border">
       <Container>
-        <div className=" w-full h-80 md:h-[35rem] relative justify-center mb-4 rounded-xl p-2">
+        <div className=" w-full h-80 md:h-[35rem] relative justify-center mb-4 border-b rounded-xl p-2">
           <img
             src={appwriteService.getFilePreview(post.featuredImage)}
             alt={post.title}
-            className="rounded-xl object-fill
-             h-full w-full"
+            className="rounded-xl object-fill h-full w-full"
           />
           {isAuthor && (
-            <div className="absolute  top-[-40px] right-2 z-0">
+            <div className="absolute  top-[-10px] right-2 z-0">
               <Link to={`/edit-post/${post.$id}`}>
                 <Button class="mr-3 bg-green-500 px-7 py-1 rounded-xl font-bold hover:text-white hover:bg-green-800 ease-in duration-300">
                   Edit

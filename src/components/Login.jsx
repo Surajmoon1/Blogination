@@ -19,7 +19,6 @@ function Login() {
   } = useForm();
 
   const login = async (data) => {
-    console.log(data);
     setError("");
     setLoading(true);
     try {
@@ -27,7 +26,6 @@ function Login() {
 
       if (session) {
         const userData = await authService.getCurrentUser();
-        console.log(userData);
         if (userData) {
           dispatch(storeLogin({ userData: userData }));
           navigate("/");

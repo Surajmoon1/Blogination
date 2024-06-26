@@ -32,7 +32,18 @@ function MobileNav() {
       path: "/add-post",
       active: authStatus,
     },
+    {
+      name: "My Posts",
+      path: "/my-post",
+      active: authStatus,
+    },
+    {
+      name: "Profile",
+      path: "/profile",
+      active: authStatus,
+    },
   ];
+
   return (
     <ul className="flex flex-col fixed top-24 left-0 right-0 bottom-0 justify-center items-center z-50 bg-slate-800 opacity-90 ml-auto gap-1 md:hidden">
       {navItems.map((item) =>

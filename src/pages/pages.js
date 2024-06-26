@@ -8,6 +8,8 @@ import Signup from "./Signup";
 import Verified from "./Verified";
 import Verification from "./Verification";
 import ResetPassword from "./ResetPassword";
+import Profile from "./Profile";
+import MyPost from "./MyPost";
 
 export {
   AllPosts,
@@ -20,4 +22,6 @@ export {
   Verified,
   Verification,
   ResetPassword,
+  Profile,
+  MyPost,
 };

@@ -16,6 +16,8 @@ import {
   Verified,
   Verification,
   ResetPassword,
+  Profile,
+  MyPost,
 } from "./pages/pages.js";
 import { AuthLayout } from "./components";
 import CreatePassRecovery from "./pages/CreatePassRecovery.jsx";
@@ -58,6 +60,22 @@ const router = createBrowserRouter([
         element: (
           <AuthLayout authentication>
             <AddPost />
+          </AuthLayout>
+        ),
+      },
+      {
+        path: "/profile",
+        element: (
+          <AuthLayout authentication>
+            <Profile />
+          </AuthLayout>
+        ),
+      },
+      {
+        path: "/my-post",
+        element: (
+          <AuthLayout authentication>
+            <MyPost />
           </AuthLayout>
         ),
       },

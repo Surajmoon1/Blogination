@@ -22,7 +22,7 @@ export class appwriteServices {
     userId,
     status,
     author,
-    updatedAt
+    updatedAt,
   }) {
     try {
       return await this.databases.createDocument(
@@ -89,7 +89,7 @@ export class appwriteServices {
     }
   }
 
-  async getPosts(queries = [Query.equal("status", "active")]) {
+  async getPosts(queries) {
     try {
       return await this.databases.listDocuments(
         config.appwriteDatabaseId,

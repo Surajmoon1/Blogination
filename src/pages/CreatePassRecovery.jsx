@@ -25,12 +25,14 @@ function CreatePassRecovery() {
   };
 
   return (
-    <div className="flex items-center justify-center w-full px-2">
+    <div className="flex items-center justify-center w-full px-2 py-14">
       <div className="p-6 mx-auto w-full max-w-xl bg-gray-700 rounded-xl">
         {error ? (
           <p className="mt-4 text-red-600 text-center">{error}</p>
         ) : (
-          <p className="mt-4 text-white text-center">{display}</p>
+          <p className="mt-4 text-white text-center text-2xl font-semibold">
+            {display}
+          </p>
         )}
 
         <form onSubmit={handleSubmit(passwordRecovery)} className="mt-8">
