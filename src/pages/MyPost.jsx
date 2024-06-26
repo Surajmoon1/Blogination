@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
-import appwriteService from "../appwriteServices/postsAndFileService";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Container, Loading, PostCard } from "../components";
+import appwriteService from "../appwriteServices/postsAndFileService";
 import { Query } from "appwrite";
 
-function AllPosts() {
+function MyPost() {
+  const userData = useSelector((state) => state.auth.userData);
+
   const [loading, setLoading] = useState(false);
 
   const [posts, setPosts] = useState([]);
@@ -11,7 +14,7 @@ function AllPosts() {
   useEffect(() => {
     setLoading(true);
     appwriteService
-      .getPosts([Query.equal("status", "active")])
+      .getPosts([Query.equal("userId", userData.$id)])
       .then((posts) => {
         if (posts) {
           setPosts(posts.documents);
@@ -19,6 +22,24 @@ function AllPosts() {
         }
       });
   }, []);
+
+  if (posts.length === 0) {
+    return loading ? (
+      <Loading />
+    ) : (
+      <div className="w-full py-8 mt-4 text-center">
+        <Container>
+          <div className="flex flex-wrap">
+            <div className="p-2 w-full">
+              <h1 className="text-2xl font-bold py-10 text-center text-white">
+                You haven't post anything yet.
+              </h1>
+            </div>
+          </div>
+        </Container>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full py-8">
@@ -39,4 +60,4 @@ function AllPosts() {
   );
 }
 
-export default AllPosts;
+export default MyPost;

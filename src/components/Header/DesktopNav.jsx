@@ -32,9 +32,20 @@ function DesktopNav() {
       path: "/add-post",
       active: authStatus,
     },
+    {
+      name: "My Posts",
+      path: "/my-post",
+      active: authStatus,
+    },
+    {
+      name: "Profile",
+      path: "/profile",
+      active: authStatus,
+    },
   ];
+
   return (
-    <ul className="md:flex ml-auto gap-1 hidden">
+    <ul className="md:flex ml-auto gap-2 hidden">
       {navItems.map((item) =>
         item.active ? (
           <li key={`DesktopNav${item.name}`} className="text-white">
@@ -42,7 +53,7 @@ function DesktopNav() {
               to={item.path}
               className={({ isActive }) =>
                 `inline-block py-2 px-6 duration-500 rounded-full hover:bg-[#6ee2f5] hover:text-black ${
-                  isActive ? "text-[#eaa79c]  border-b-2" : "white"
+                  isActive ? "text-[#eaa79c]  border-y-2 scale-110" : "white"
                 }`
               }
             >
@@ -51,11 +62,12 @@ function DesktopNav() {
           </li>
         ) : null
       )}
-      {authStatus && (
+
+      {/* {authStatus && (
         <li>
           <LogoutBtn />
         </li>
-      )}
+      )} */}
     </ul>
   );
 }

@@ -5,6 +5,23 @@ import Home from "./Home";
 import Login from "./Login";
 import Post from "./Post";
 import Signup from "./Signup";
+import Verified from "./Verified";
 import Verification from "./Verification";
+import ResetPassword from "./ResetPassword";
+import Profile from "./Profile";
+import MyPost from "./MyPost";
 
-export { AllPosts, AddPost, EditPost, Home, Login, Post, Signup, Verification };
+export {
+  AllPosts,
+  AddPost,
+  EditPost,
+  Home,
+  Login,
+  Post,
+  Signup,
+  Verified,
+  Verification,
+  ResetPassword,
+  Profile,
+  MyPost,
+};

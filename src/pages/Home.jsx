@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { PostCard, Container, Login, Loading } from "../components";
 import appwriteService from "../appwriteServices/postsAndFileService";
-import authService from "../appwriteServices/authService";
 import { useSelector } from "react-redux";
-import { useSearchParams, Navigate } from "react-router-dom";
 
 function Home() {
   const [posts, setPosts] = useState([]);
@@ -12,13 +10,15 @@ function Home() {
   const authStatus = useSelector((state) => state.auth.status);
 
   useEffect(() => {
-    setLoading(true);
-    appwriteService.getPosts().then((posts) => {
-      if (posts) {
-        setPosts(posts.documents);
-      }
-      setLoading(false);
-    });
+    (async () => {
+      setLoading(true);
+      await appwriteService.getPosts().then((posts) => {
+        if (posts) {
+          setPosts(posts.documents);
+        }
+        setLoading(false);
+      });
+    })();
   }, []);
 
   if (authStatus === false) {

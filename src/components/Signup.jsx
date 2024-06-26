@@ -27,10 +27,18 @@ function Signup() {
 
       if (createUser) {
         const userData = await authService.getCurrentUser();
-        if (userData) {
+
+        if (userData && userData.emailVerification === true) {
           dispatch(login(userData));
+          setLoading(false);
+        } else {
+          navigate("/login");
+        }
+
+        if (userData) {
+          // dispatch(login(userData));
           // navigate("/");
-          navigate("/verify");
+          navigate("/verification");
 
           setLoading(false);
         }

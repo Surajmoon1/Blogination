@@ -37,7 +37,7 @@ export class AuthServices {
 
   async createVerification() {
     try {
-      return await this.account.createVerification("http://localhost:5173");
+      await this.account.createVerification("http://localhost:5173/verify");
     } catch (error) {
       console.log("Apprite service :: verification :: error :- ", error);
       throw error;
@@ -46,12 +46,13 @@ export class AuthServices {
 
   async updateVerification(userId, secret) {
     try {
-      return await this.account.updateVerification(userId, secret);
+      await this.account.updateVerification(userId, secret);
     } catch (error) {
       console.log("Apprite service :: updateVerification :: error :- ", error);
       throw error;
     }
   }
+
   async login({ email, password }) {
     try {
       return await this.account.createEmailPasswordSession(email, password);
@@ -67,13 +68,43 @@ export class AuthServices {
     } catch (error) {
       console.log("Appwrite services :: getCurrenUser :: error :- ", error);
     }
+    return null;
   }
 
   async logout() {
     try {
-      return await this.account.deleteSessions();
+      await this.account.deleteSessions();
     } catch (error) {
       console.log("Appwrite Services :: logout :: error :- ", error);
+    }
+  }
+
+  async createPasswordRecovery({ email }) {
+    try {
+      await this.account.createRecovery(
+        email,
+        "http://localhost:5173/reset-password"
+      );
+    } catch (error) {
+      console.log(
+        "Appwrite Services :: createPasswordRecovery :: error :- ",
+        error
+      );
+      throw error;
+    }
+  }
+
+  async resetPassword(userId, secret, password, confirmPassword) {
+    try {
+      await this.account.updateRecovery(
+        userId,
+        secret,
+        password,
+        confirmPassword
+      );
+    } catch (error) {
+      console.log("Appwrite Services :: resetPassword :: error :- ", error);
+      throw error;
     }
   }
 }

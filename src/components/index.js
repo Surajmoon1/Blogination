@@ -5,6 +5,7 @@ import AuthLayout from "./AuthLayout";
 import LogoutBtn from "./Header/LogoutBtn";
 import Button from "./Button";
 import PostForm from "./post-form/PostForm";
+import ResetPassword from "./resetPassword/ResetPassword";
 import Input from "./Input";
 import Loading from "./Loading";
 import Login from "./Login";
@@ -30,4 +31,5 @@ export {
   RTE,
   PostForm,
   Loading,
+  ResetPassword,
 };
