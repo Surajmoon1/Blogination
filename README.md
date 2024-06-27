@@ -1,1 +1,2 @@
-# Blog Project
+# BLOGINATION 
+## A Blog Posting Website
