@@ -2,5 +2,4 @@
 ## A Blog Posting Website
 
 
-### Link
-blogination.netlify.app
+[See Project](https://www.blogination.netlify.app/)
