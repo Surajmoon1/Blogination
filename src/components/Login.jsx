@@ -29,6 +29,7 @@ function Login() {
         if (userData) {
           dispatch(storeLogin({ userData: userData }));
           navigate("/");
+          location.reload();
           setLoading(false);
         } else {
           navigate("/login");

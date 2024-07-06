@@ -13,14 +13,16 @@ function MyPost() {
 
   useEffect(() => {
     setLoading(true);
-    appwriteService
-      .getPosts([Query.equal("userId", userData.$id)])
-      .then((posts) => {
-        if (posts) {
-          setPosts(posts.documents);
-          setLoading(false);
-        }
-      });
+    (async () => {
+      await appwriteService
+        .getPosts([Query.equal("userId", userData.$id)])
+        .then((posts) => {
+          if (posts) {
+            setPosts(posts.documents);
+            setLoading(false);
+          }
+        });
+    })();
   }, []);
 
   if (posts.length === 0) {
