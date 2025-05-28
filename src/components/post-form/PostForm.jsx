@@ -88,12 +88,12 @@ function PostForm({ post }) {
         />
 
         <Input
-          label="Post ID "
+          // label="Post ID "
           placeholder="Post ID"
           readOnly
           required={true}
           errors={errors.slug}
-          className=" placeholder:text-gray-700 indent-2 outline-none bg-gray-400 text-black text-lg font-medium cursor-not-allowed"
+          className=" hidden placeholder:text-gray-700 indent-2 outline-none bg-gray-400 text-black text-lg font-medium cursor-not-allowed"
           {...register("slug", { required: true })}
         />
 
@@ -124,7 +124,7 @@ function PostForm({ post }) {
         {post && (
           <div className="w-full mb-4">
             <img
-              src={appwriteServices.getFilePreview(post.featuredImage)}
+              src={appwriteServices.getFileView(post.featuredImage)}
               alt={post.title}
               className="rounded-lg"
             />

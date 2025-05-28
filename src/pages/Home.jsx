@@ -1,26 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { PostCard, Container, Login, Loading } from "../components";
 import appwriteService from "../appwriteServices/postsAndFileService";
-import { useDispatch, useSelector } from "react-redux";
-import authService from "../appwriteServices/authService";
+import { useSelector } from "react-redux";
 
 function Home() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
 
   const authStatus = useSelector((state) => state.auth.status);
-  const userData = useSelector((state) => state.auth.userData);
-
-  // useEffect(() => {
-  //   if (!userData) {
-  //     authService.getCurrentUser().then((user) => {
-  //       if (user) {
-  //         dispatch(storeLogin({ userData: user }));
-  //       }
-  //     });
-  //   }
-  // }, []);
 
   useEffect(() => {
     (async () => {
@@ -32,7 +19,7 @@ function Home() {
         setLoading(false);
       });
     })();
-  }, []);
+  }, [authStatus]);
 
   if (authStatus === false) {
     return (

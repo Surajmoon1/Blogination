@@ -125,9 +125,13 @@ export class appwriteServices {
     }
   }
 
-  getFilePreview(fileId) {
-    return this.storage.getFilePreview(config.appwriteBucketId, fileId);
-  }
+  // getFilePreview(fileId) {
+  //   return this.storage.getFilePreview(config.appwriteBucketId, fileId).href;
+  // }
+
+  getFileView = (fileId) => {
+    return this.storage.getFileView(config.appwriteBucketId, fileId);
+  };
 }
 
 const appwriteService = new appwriteServices();

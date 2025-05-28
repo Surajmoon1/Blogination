@@ -47,7 +47,7 @@ function Post() {
       <Container>
         <div className=" w-full h-80 md:h-[35rem] relative justify-center mb-4 border-b rounded-xl p-2">
           <img
-            src={appwriteService.getFilePreview(post.featuredImage)}
+            src={appwriteService.getFileView(post.featuredImage)}
             alt={post.title}
             className="rounded-xl object-fill h-full w-full"
           />
