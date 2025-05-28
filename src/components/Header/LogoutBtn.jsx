@@ -24,7 +24,7 @@ function LogoutBtn() {
   ) : (
     <button
       onClick={handleLogout}
-      className="inline-block py-3 w-1/2 px-6 text-2xl bg-blue-600  duration-500 text-black font-bold rounded-full hover:bg-blue-800 hover:text-white"
+      className="inline-block py-3 w-full md:w-1/2 px-6 text-2xl bg-blue-600  duration-500 text-black font-bold rounded-full hover:bg-blue-800 hover:text-white"
     >
       Logout
     </button>

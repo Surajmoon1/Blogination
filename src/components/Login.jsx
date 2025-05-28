@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Logo, Button, Input, Loading } from "./index";
 import { useNavigate, Link } from "react-router-dom";
 import { login as storeLogin } from "../store/authSlice";
@@ -27,9 +27,8 @@ function Login() {
       if (session) {
         const userData = await authService.getCurrentUser();
         if (userData) {
-          dispatch(storeLogin({ userData: userData }));
+          dispatch(storeLogin(userData));
           navigate("/");
-          location.reload();
           setLoading(false);
         } else {
           navigate("/login");

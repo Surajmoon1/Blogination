@@ -1,8 +1,9 @@
-import React, { useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { Controller } from "react-hook-form";
+import config from "../config/config";
 
 function RTE({ name, control, label, required, errors, defaultValue = "" }) {
+
   return (
     <div className="w-full">
       {label && (
@@ -22,7 +23,7 @@ function RTE({ name, control, label, required, errors, defaultValue = "" }) {
         control={control}
         render={({ field: { onChange } }) => (
           <Editor
-            apiKey="4pz75hv94trqawhewomw4kbifud35rjgbsfhne82b6v7j86x"
+            apiKey={config.tinyMCEApi}
             initialValue={defaultValue}
             init={{
               initialValue: { defaultValue },
